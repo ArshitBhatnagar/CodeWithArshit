@@ -65,5 +65,5 @@ match choice.lower():
         random_sentence = f"{subject.capitalize()} {verb2}{marks[0]}"
     case "future indefinite":
         random_sentence = f"{subject.capitalize()} {future_helping} {verb1}{marks[0]}"
-print(choice)
+
 print(random_sentence)
