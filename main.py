@@ -1,4 +1,5 @@
 # English Grammar
+"""randomizing the sentences"""
 import random
 
 subjects = ["I", "we", "you", "he", "she", "it", "they"]
@@ -24,7 +25,7 @@ for v in v2:
         case "ran":
             v3.append("run")
         case _:
-            v3.append(v) 
+            v3.append(v)
 
 v4 = []
 for v in v1:
@@ -58,65 +59,65 @@ preposition = v1[random_preposition]
 
 match subject.lower():
     case "i":
-        future_helping = "shall"
-        to_have = "have"
-        past_helping = "was"
+        FUTURE_HELPING = "shall"
+        TO_HAVE = "have"
+        PAST_HELPING = "was"
 
     case "we":
-        future_helping = "shall"
-        to_have = "have"
-        past_helping = "were"
+        FUTURE_HELPING = "shall"
+        TO_HAVE = "have"
+        PAST_HELPING = "were"
 
     case "you":
-        future_helping = "will"
-        to_have = "have"
-        past_helping = "were"
+        FUTURE_HELPING = "will"
+        TO_HAVE = "have"
+        PAST_HELPING = "were"
 
     case "they":
-        future_helping = "will"
-        to_have = "have"
-        past_helping = "were"
-    
+        FUTURE_HELPING = "will"
+        TO_HAVE = "have"
+        PAST_HELPING = "were"
+
     case _:
-        future_helping = "will"
-        to_have = "has"
-        past_helping = "was"
+        FUTURE_HELPING = "will"
+        TO_HAVE = "has"
+        PAST_HELPING = "was"
 
 # Execution
-random_sentence = ""
+RANDOM_SENTENCE = ""
 choice = input("Enter which type of sentence (tense) do you want to generate : ")
 match choice.lower():
     case "present indefinite":
-        random_sentence = f"{subject.capitalize()} {verb1}{marks[0]}"
+        RANDOM_SENTENCE = f"{subject.capitalize()} {verb1}{marks[0]}"
     case "past indefinite":
-        random_sentence = f"{subject.capitalize()} {verb2}{marks[0]}"
+        RANDOM_SENTENCE = f"{subject.capitalize()} {verb2}{marks[0]}"
     case "future indefinite":
-        random_sentence = f"{subject.capitalize()} {future_helping} {verb1}{marks[0]}"
+        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} {verb1}{marks[0]}"
 
     case "present progressive":
-        random_sentence = f"{subject.capitalize()} {verb4}{marks[0]}"
+        RANDOM_SENTENCE = f"{subject.capitalize()} {verb4}{marks[0]}"
     case "past progressive":
-        random_sentence = f"{subject.capitalize()} {past_helping} {verb4}{marks[0]}"
+        RANDOM_SENTENCE = f"{subject.capitalize()} {PAST_HELPING} {verb4}{marks[0]}"
     case "future progressive":
-        random_sentence = f"{subject.capitalize()} {future_helping} be {verb4}{marks[0]}"
+        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} be {verb4}{marks[0]}"
 
     case "present perfect":
-        random_sentence = f"{subject.capitalize()} {to_have} {verb3}{marks[0]}"
+        RANDOM_SENTENCE = f"{subject.capitalize()} {TO_HAVE} {verb3}{marks[0]}"
     case "past perfect":
-        random_sentence = f"{subject.capitalize()} had {verb3}{marks[0]}"
+        RANDOM_SENTENCE = f"{subject.capitalize()} had {verb3}{marks[0]}"
     case "future perfect":
-        random_sentence = f"{subject.capitalize()} {future_helping} have {verb3}{marks[0]}"
+        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} have {verb3}{marks[0]}"
 
     case "present perfect progressive":
-        random_sentence = f"{subject.capitalize()} {to_have} been {verb4}{marks[0]}"
+        RANDOM_SENTENCE = f"{subject.capitalize()} {TO_HAVE} been {verb4}{marks[0]}"
     case "past perfect progressive":
-        random_sentence = f"{subject.capitalize()} had been {verb4}{marks[0]}"
+        RANDOM_SENTENCE = f"{subject.capitalize()} had been {verb4}{marks[0]}"
     case "future perfect progressive":
-        random_sentence = f"{subject.capitalize()} {future_helping} have been {verb4}{marks[0]}"
+        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} have been {verb4}{marks[0]}"
 
     case _:
-        random_sentence = f"{choice} is not a type of tense."
+        RANDOM_SENTENCE = f"{choice} is not a type of tense."
 
-print(random_sentence)
+print(RANDOM_SENTENCE)
 
 # inputing the sentence and outputing the type and tense of sentence
