@@ -57,6 +57,7 @@ match subject.lower():
         future_helping = "will"
 
 # Execution
+random_sentence = ""
 choice = input("Enter which type of sentence (tense) do you want to generate : ")
 match choice.lower():
     case "present indefinite":
