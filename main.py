@@ -193,42 +193,74 @@ elif not SINGULAR:
     singular_verb1 = verb1
 
 # Execution
-# need to remove space before mark
-
-choice = input("Enter which type of sentence (tense) do you want to generate : ")
+choice = input("What would you want to do : ")
 match choice.lower():
-    case "present indefinite":
-        RANDOM_SENTENCE = f"{subject.capitalize()} {singular_verb1} {OBJ}"
-    case "past indefinite":
-        RANDOM_SENTENCE = f"{subject.capitalize()} {VERB2} {OBJ}"
-    case "future indefinite":
-        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} {verb1} {OBJ}"
+    case "generate sentence":
+        tense = input("Enter which type of sentence (tense) do you want to generate : ")
+        match tense.lower():
+            case "present indefinite":
+                RANDOM_SENTENCE = f"{subject.capitalize()} {singular_verb1} {OBJ}"
+            case "past indefinite":
+                RANDOM_SENTENCE = f"{subject.capitalize()} {VERB2} {OBJ}"
+            case "future indefinite":
+                RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} {verb1} {OBJ}"
 
-    case "present progressive":
-        RANDOM_SENTENCE = f"{subject.capitalize()} {TO_BE} {verb4} {OBJ}"
-    case "past progressive":
-        RANDOM_SENTENCE = f"{subject.capitalize()} {PAST_HELPING} {verb4} {OBJ}"
-    case "future progressive":
-        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} be {verb4} {OBJ}"
+            case "present progressive":
+                RANDOM_SENTENCE = f"{subject.capitalize()} {TO_BE} {verb4} {OBJ}"
+            case "past progressive":
+                RANDOM_SENTENCE = f"{subject.capitalize()} {PAST_HELPING} {verb4} {OBJ}"
+            case "future progressive":
+                RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} be {verb4} {OBJ}"
 
-    case "present perfect":
-        RANDOM_SENTENCE = f"{subject.capitalize()} {TO_HAVE} {VERB3} {OBJ}"
-    case "past perfect":
-        RANDOM_SENTENCE = f"{subject.capitalize()} had {VERB3} {OBJ}"
-    case "future perfect":
-        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} have {VERB3} {OBJ}"
+            case "present perfect":
+                RANDOM_SENTENCE = f"{subject.capitalize()} {TO_HAVE} {VERB3} {OBJ}"
+            case "past perfect":
+                RANDOM_SENTENCE = f"{subject.capitalize()} had {VERB3} {OBJ}"
+            case "future perfect":
+                RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} have {VERB3} {OBJ}"
 
-    case "present perfect progressive":
-        RANDOM_SENTENCE = f"{subject.capitalize()} {TO_HAVE} been {verb4} {OBJ}"
-    case "past perfect progressive":
-        RANDOM_SENTENCE = f"{subject.capitalize()} had been {verb4} {OBJ}"
-    case "future perfect progressive":
-        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} have been {verb4} {OBJ}"
+            case "present perfect progressive":
+                RANDOM_SENTENCE = f"{subject.capitalize()} {TO_HAVE} been {verb4} {OBJ}"
+            case "past perfect progressive":
+                RANDOM_SENTENCE = f"{subject.capitalize()} had been {verb4} {OBJ}"
+            case "future perfect progressive":
+                RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} have been {verb4} {OBJ}"
 
-    case _:
-        RANDOM_SENTENCE = f"{choice} is not a type of tense"
+            case _:
+                RANDOM_SENTENCE = f"{tense} is not a type of tense"
 
-RANDOM_SENTENCE = RANDOM_SENTENCE.strip() + marks[0]
-print(RANDOM_SENTENCE)
+        RANDOM_SENTENCE = RANDOM_SENTENCE.strip() + marks[0]
+        print(RANDOM_SENTENCE)
 
+    case "finding tense":
 # inputing the sentence and outputing the type and tense of sentence
+        sentence = input("Enter the sentence : ")
+        if (sentence.find("will have been") != -1 or sentence.find("shall have been") != -1) and sentence.find("ing") != -1:
+            TENSE = "Future perfect progressive"
+        elif sentence.find("had been") != -1 and sentence.fing("ing") != -1:
+            TENSE = "Past perfect progressive"
+        elif (sentence.find("have been") != -1 or sentence.find("has been") != -1) and sentence.find("ing") != -1:
+            TENSE = "Present perfect progressive"
+
+        elif sentence.find("will have") != -1 or sentence.find("shall have") != -1:
+            TENSE = "Future perfect"
+        elif sentence.find("had") != -1:
+            TENSE = "Past perfect"
+        elif sentence.find("have") != -1 or sentence.find("has") != -1:
+            TENSE = "Present perfect"
+
+        elif (sentence.find("will be") != -1 or sentence.find("shall be") != -1) and sentence.find("ing") != -1:
+            TENSE = "Future progressive"
+        elif (sentence.find("was") != -1 or sentence.find("were") != -1) and sentence.find("ing") != -1:
+            TENSE = "Past progressive"
+        elif (sentence.find("is") != -1 or sentence.find("am") != -1 or sentence.find("are") != -1) and sentence.find("ing") != -1:
+            TENSE = "Present progressive"
+
+        elif sentence.find("will") != -1 or sentence.find("shall") != -1:
+            TENSE = "Future indefinite"
+        elif sentence.find("ed") != -1 or sentence.find("ran") != -1:
+            TENSE = "Past indefinite"
+        else:
+            TENSE = "Present indefinite"
+
+        print(TENSE)
