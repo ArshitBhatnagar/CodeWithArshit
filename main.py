@@ -2,7 +2,7 @@
 """randomizing the sentences"""
 import random
 
-subjects = ["I", "we", "you", "he", "she", "it", "they", "the boy", "the girl"]
+subjects = ["I", "we", "you", "he", "she", "it", "they", "boy", "girl"]
 # name = input("Enter any name you want to use as a subject : ")
 # subjects.append(name)
 for subject in subjects:
@@ -28,10 +28,10 @@ for subject in subjects:
         case "they":
             THEYOBJECTIVE_SUBJECT = "them"
             THEYPOSSESIVE_SUBJECT = "their"
-        case "the boy":
+        case "boy":
             BOYOBJECTIVE_SUBJECT = subject
             BOYPOSSESIVE_SUBJECT = subject + "'s"
-        case "the girl":
+        case "girl":
             GIRLOBJECTIVE_SUBJECT = subject
             GIRLPOSSESIVE_SUBJECT = subject + "'s"
 
@@ -47,15 +47,19 @@ adverbs = ["genlty", "happily", "sadly", "quietly", "slowly"]
 
 marks = [".", "?", ",", "!"]
 
+articles = ["a", "an", "the"]
+
 # randomizing
 random_subject = random.randint(1, len(subjects))
 random_v1 = random.randint(1, len(v1))
 random_preposition = random.randint(1, len(prepositions))
+random_articles = random.randint(1, len(articles))
 
 # applying random
 subject = subjects[random_subject -1]
 verb1 = v1[random_v1 -1]
 preposition = prepositions[random_preposition -1]
+article = articles[random_articles -1]
 
 # initializing VERB2, VERB3 and verb4
 match verb1:
@@ -104,12 +108,12 @@ match subject:
     case "they":
         OBJECTIVE_SUBJECT = THEYOBJECTIVE_SUBJECT
         POSSESIVE_SUBJECT = THEYPOSSESIVE_SUBJECT
-    case "the boy":
-        OBJECTIVE_SUBJECT = BOYOBJECTIVE_SUBJECT
-        POSSESIVE_SUBJECT = BOYPOSSESIVE_SUBJECT
-    case "the girl":
-        OBJECTIVE_SUBJECT = GIRLOBJECTIVE_SUBJECT
-        POSSESIVE_SUBJECT = GIRLPOSSESIVE_SUBJECT
+    case "boy":
+        OBJECTIVE_SUBJECT = articles[2] + " " + BOYOBJECTIVE_SUBJECT
+        POSSESIVE_SUBJECT = articles[2] + " " + BOYPOSSESIVE_SUBJECT
+    case "girl":
+        OBJECTIVE_SUBJECT = articles[2] + " " + GIRLOBJECTIVE_SUBJECT
+        POSSESIVE_SUBJECT = articles[2] + " " + GIRLPOSSESIVE_SUBJECT
 
 match verb1:
     case "add":
