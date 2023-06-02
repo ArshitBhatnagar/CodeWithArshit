@@ -197,200 +197,310 @@ elif not SINGULAR:
 
 # Execution
 # need to add since/for in perfect progressive
+def generate_sentence():
+    """Generate the type of sentence that the user has inputted"""
+    tense = input("tense : ")
+    types = input("Type (default:Affirmative) : ")
+    if types == "":
+        types = "Affirmative"
+    match types.lower():
+        case "affirmative":
+            match tense.lower():
+                case "present indefinite":
+                    random_sentence = f"{subject.capitalize()} {singular_verb1} {OBJ}"
+                case "past indefinite":
+                    random_sentence = f"{subject.capitalize()} {VERB2} {OBJ}"
+                case "future indefinite":
+                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} {verb1} {OBJ}"
+
+                case "present progressive":
+                    random_sentence = f"{subject.capitalize()} {TO_BE} {verb4} {OBJ}"
+                case "past progressive":
+                    random_sentence = f"{subject.capitalize()} {PAST_HELPING} {verb4} {OBJ}"
+                case "future progressive":
+                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} be {verb4} {OBJ}"
+
+                case "present perfect":
+                    random_sentence = f"{subject.capitalize()} {TO_HAVE} {VERB3} {OBJ}"
+                case "past perfect":
+                    random_sentence = f"{subject.capitalize()} had {VERB3} {OBJ}"
+                case "future perfect":
+                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} have {VERB3} {OBJ}"
+
+                case "present perfect progressive":
+                    random_sentence = f"{subject.capitalize()} {TO_HAVE} been {verb4} {OBJ}"
+                case "past perfect progressive":
+                    random_sentence = f"{subject.capitalize()} had been {verb4} {OBJ}"
+                case "future perfect progressive":
+                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} have been {verb4} {OBJ}"
+
+                case _:
+                    random_sentence = f"{tense} is not a type of tense!!!"
+
+        case "negative":
+            match tense.lower():
+                case "present indefinite":
+                    random_sentence = f"{subject.capitalize()} {TO_DO} not {verb1} {OBJ}"
+                case "past indefinite":
+                    random_sentence = f"{subject.capitalize()} did not {VERB2} {OBJ}"
+                case "future indefinite":
+                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} not {verb1} {OBJ}"
+
+                case "present progressive":
+                    random_sentence = f"{subject.capitalize()} {TO_BE} not {verb4} {OBJ}"
+                case "past progressive":
+                    random_sentence = f"{subject.capitalize()} {PAST_HELPING} not {verb4} {OBJ}"
+                case "future progressive":
+                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} not be {verb4} {OBJ}"
+
+                case "present perfect":
+                    random_sentence = f"{subject.capitalize()} {TO_HAVE} not {VERB3} {OBJ}"
+                case "past perfect":
+                    random_sentence = f"{subject.capitalize()} had not {VERB3} {OBJ}"
+                case "future perfect":
+                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} not have {VERB3} {OBJ}"
+
+                case "present perfect progressive":
+                    random_sentence = f"{subject.capitalize()} {TO_HAVE} not been {verb4} {OBJ}"
+                case "past perfect progressive":
+                    random_sentence = f"{subject.capitalize()} had not been {verb4} {OBJ}"
+                case "future perfect progressive":
+                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} have not been {verb4} {OBJ}"
+
+                case _:
+                    random_sentence = f"{tense} is not a type of tense!!!"
+
+        case "interrogative":
+            match tense.lower():
+                case "present indefinite":
+                    random_sentence = f"{TO_DO.capitalize()} {subject} {verb1} {OBJ}"
+                case "past indefinite":
+                    random_sentence = f"Did {subject} {VERB2} {OBJ}"
+                case "future indefinite":
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} {verb1} {OBJ}"
+
+                case "present progressive":
+                    random_sentence = f"{TO_BE.capitalize()} {subject} {verb4} {OBJ}"
+                case "past progressive":
+                    random_sentence = f"{PAST_HELPING.capitalize()} {subject} {verb4} {OBJ}"
+                case "future progressive":
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} be {verb4} {OBJ}"
+
+                case "present perfect":
+                    random_sentence = f"{TO_HAVE.capitalize()} {subject} {VERB3} {OBJ}"
+                case "past perfect":
+                    random_sentence = f"Had {subject} {VERB3} {OBJ}"
+                case "future perfect":
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} have {VERB3} {OBJ}"
+
+                case "present perfect progressive":
+                    random_sentence = f"{TO_HAVE.capitalize()} {subject} been {verb4} {OBJ}"
+                case "past perfect progressive":
+                    random_sentence = f"Had {subject} been {verb4} {OBJ}"
+                case "future perfect progressive":
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} have been {verb4} {OBJ}"
+
+                case _:
+                    random_sentence = f"{tense} is not a type of tense!!!"
+
+        case "negative interrogative":
+            match tense.lower():
+                case "present indefinite":
+                    random_sentence = f"{TO_DO.capitalize()} {subject} not {verb1} {OBJ}"
+                case "past indefinite":
+                    random_sentence = f"Did {subject} not {VERB2} {OBJ}"
+                case "future indefinite":
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} not {verb1} {OBJ}"
+
+                case "present progressive":
+                    random_sentence = f"{TO_BE.capitalize()} {subject} not {verb4} {OBJ}"
+                case "past progressive":
+                    random_sentence = f"{PAST_HELPING.capitalize()} {subject} not {verb4} {OBJ}"
+                case "future progressive":
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} not be {verb4} {OBJ}"
+
+                case "present perfect":
+                    random_sentence = f"{TO_HAVE.capitalize()} {subject} not {VERB3} {OBJ}"
+                case "past perfect":
+                    random_sentence = f"Had {subject} not {VERB3} {OBJ}"
+                case "future perfect":
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} not have {VERB3} {OBJ}"
+
+                case "present perfect progressive":
+                    random_sentence = f"{TO_HAVE.capitalize()} {subject} not been {verb4} {OBJ}"
+                case "past perfect progressive":
+                    random_sentence = f"Had {subject} not been {verb4} {OBJ}"
+                case "future perfect progressive":
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} have not been {verb4} {OBJ}"
+
+                case _:
+                    random_sentence = f"{tense} is not a type of tense!!!"
+
+        case _:
+            random_sentence = f"{types} is not a type of sentence!!!"
+    random_sentence = random_sentence.strip() + marks[0]
+    print(random_sentence)
+
+def finding_tense():
+    """Find the tense of the sentence inputted from user"""
+# inputing the sentence and outputing the type and tense of sentence
+    sentence = input("Sentence : ")
+
+# listing the type of sentence
+    if "not" in sentence:
+        types = "Negative Interrogaive" if "?" in sentence else "Negative"
+
+    else:
+        types = "Interrogative" if "?" in sentence else "Affirmative"
+
+# listing the tense of sentence
+    match types:
+        case "Affirmative":
+            if re.search(r"(will|shall) have been", sentence) is not None and "ing" in sentence:
+                tense = "Future perfect progressive"
+            elif "had been" in sentence and "ing" in sentence:
+                tense = "Past perfect progressive"
+            elif re.search(r"(has|have) been", sentence) is not None and "ing" in sentence:
+                tense = "Present perfect progressive"
+
+            elif re.search(r"(will|shall) have", sentence) is not None:
+                tense = "Future perfect"
+            elif "had" in sentence:
+                tense = "Past perfect"
+            elif re.search(r"have|has", sentence) is not None:
+                tense = "Present perfect"
+
+            elif re.search(r"(will|shall) be", sentence) is not None and "ing" in sentence:
+                tense = "Future progressive"
+            elif re.search(r"was|were", sentence) is not None and "ing" in sentence:
+                tense = "Past progressive"
+            elif re.search(r"is|am|are", sentence) is not None and "ing" in sentence:
+                tense = "Present progressive"
+
+            elif re.search(r"will|shall", sentence) is not None:
+                tense = "Future indefinite"
+            elif re.search(r"ed|ran", sentence) is not None:
+                tense = "Past indefinite"
+            else:
+                tense = "Present indefinite"
+
+        case "Negative":
+            if re.search(r"(will|shall) not have been", sentence) is not None and "ing" in sentence:
+                tense = "Future perfect progressive"
+            elif "had not been" in sentence and "ing" in sentence:
+                tense = "Past perfect progressive"
+            elif re.search(r"(has|have) not been", sentence) is not None and "ing" in sentence:
+                tense = "Present perfect progressive"
+
+            elif re.search(r"(will|shall) not have", sentence) is not None:
+                tense = "Future perfect"
+            elif "had not" in sentence:
+                tense = "Past perfect"
+            elif re.search(r"(have|has) not", sentence) is not None:
+                tense = "Present perfect"
+
+            elif re.search(r"(will|shall) not be", sentence) is not None and "ing" in sentence:
+                tense = "Future progressive"
+            elif re.search(r"(was|were) not", sentence) is not None and "ing" in sentence:
+                tense = "Past progressive"
+            elif re.search(r"(is|am|are) not", sentence) is not None and "ing" in sentence:
+                tense = "Present progressive"
+
+            elif re.search(r"(will|shall) not", sentence) is not None:
+                tense = "Future indefinite"
+            elif re.search(r"ed|ran", sentence) is not None:
+                tense = "Past indefinite"
+            else:
+                tense = "Present indefinite"
+
+        case "Interrogative":
+            if re.search(r"[wW]ill|[sS]hall", sentence) is not None and "ing" in sentence and "have been" in sentence:
+                tense = "Future perfect progressive"
+            elif re.search(r"[hH]ad", sentence) is not None and "ing" in sentence and "been" in sentence:
+                tense = "Past perfect progressive"
+            elif re.search(r"[hH]as|[hH]ave", sentence) is not None and "ing" in sentence and "been" in sentence:
+                tense = "Present perfect progressive"
+
+            elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None and "have" in sentence:
+                tense = "Future perfect"
+            elif re.search(r"[hH]ad", sentence) is not None:
+                tense = "Past perfect"
+            elif re.search(r"([hH]ave|[hH]as)", sentence) is not None:
+                tense = "Present perfect"
+
+            elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None and "ing" in sentence and "be" in sentence:
+                tense = "Future progressive"
+            elif re.search(r"([wW]as|[wW]ere)", sentence) is not None and "ing" in sentence:
+                tense = "Past progressive"
+            elif re.search(r"([iI]s|[aA]m|[aA]re)", sentence) is not None and "ing" in sentence:
+                tense = "Present progressive"
+
+            elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None:
+                tense = "Future indefinite"
+            elif re.search(r"[Dd]id", sentence) is not None:
+                tense = "Past indefinite"
+            else:
+                tense = "Present indefinite"
+
+        case "Negative Interrogative":
+            if re.search(r"[wW]ill|[sS]hall", sentence) is not None and "ing" in sentence and "have not been" in sentence:
+                tense = "Future perfect progressive"
+            elif re.search(r"[hH]ad", sentence) is not None and "ing" in sentence and "not been" in sentence:
+                tense = "Past perfect progressive"
+            elif re.search(r"[hH]as|[hH]ave", sentence) is not None and "ing" in sentence and "not been" in sentence:
+                tense = "Present perfect progressive"
+
+            elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None and "not have" in sentence:
+                tense = "Future perfect"
+            elif re.search(r"[hH]ad", sentence) is not None:
+                tense = "Past perfect"
+            elif re.search(r"([hH]ave|[hH]as)", sentence) is not None:
+                tense = "Present perfect"
+
+            elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None and "ing" in sentence and "not be" in sentence:
+                tense = "Future progressive"
+            elif re.search(r"([wW]as|[wW]ere)", sentence) is not None and "ing" in sentence:
+                tense = "Past progressive"
+            elif re.search(r"([iI]s|[aA]m|[aA]re)", sentence) is not None and "ing" in sentence:
+                tense = "Present progressive"
+
+            elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None:
+                tense = "Future indefinite"
+            elif re.search(r"[Dd]id", sentence) is not None:
+                tense = "Past indefinite"
+            else:
+                tense = "Present indefinite"
+
+    print("tense :", tense)
+    print("Type :", types)
 choice = input("What would you want to do : ")
 match choice.lower():
     case "generate sentence":
-        tense = input("Tense : ")
-        TYPES = input("Type (default:Affirmative) : ")
-        if TYPES == "":
-            TYPES = "Affirmative"
-        match TYPES.lower():
-
-            case "affirmative":
-                match tense.lower():
-                    case "present indefinite":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {singular_verb1} {OBJ}"
-                    case "past indefinite":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {VERB2} {OBJ}"
-                    case "future indefinite":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} {verb1} {OBJ}"
-
-                    case "present progressive":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {TO_BE} {verb4} {OBJ}"
-                    case "past progressive":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {PAST_HELPING} {verb4} {OBJ}"
-                    case "future progressive":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} be {verb4} {OBJ}"
-
-                    case "present perfect":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {TO_HAVE} {VERB3} {OBJ}"
-                    case "past perfect":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} had {VERB3} {OBJ}"
-                    case "future perfect":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} have {VERB3} {OBJ}"
-
-                    case "present perfect progressive":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {TO_HAVE} been {verb4} {OBJ}"
-                    case "past perfect progressive":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} had been {verb4} {OBJ}"
-                    case "future perfect progressive":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} have been {verb4} {OBJ}"
-
-                    case _:
-                        RANDOM_SENTENCE = f"{tense} is not a type of tense!!!"
-
-            case "negative":
-                match tense.lower():
-                    case "present indefinite":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {TO_DO} not {verb1} {OBJ}"
-                    case "past indefinite":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} did not {VERB2} {OBJ}"
-                    case "future indefinite":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} not {verb1} {OBJ}"
-
-                    case "present progressive":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {TO_BE} not {verb4} {OBJ}"
-                    case "past progressive":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {PAST_HELPING} not {verb4} {OBJ}"
-                    case "future progressive":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} not be {verb4} {OBJ}"
-
-                    case "present perfect":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {TO_HAVE} not {VERB3} {OBJ}"
-                    case "past perfect":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} had not {VERB3} {OBJ}"
-                    case "future perfect":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} not have {VERB3} {OBJ}"
-
-                    case "present perfect progressive":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {TO_HAVE} not been {verb4} {OBJ}"
-                    case "past perfect progressive":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} had not been {verb4} {OBJ}"
-                    case "future perfect progressive":
-                        RANDOM_SENTENCE = f"{subject.capitalize()} {FUTURE_HELPING} have not been {verb4} {OBJ}"
-
-                    case _:
-                        RANDOM_SENTENCE = f"{tense} is not a type of tense!!!"
-
-            case "interrogative":
-                match tense.lower():
-                    case "present indefinite":
-                        RANDOM_SENTENCE = f"{TO_DO.capitalize()} {subject} {verb1} {OBJ}"
-                    case "past indefinite":
-                        RANDOM_SENTENCE = f"Did {subject} {VERB2} {OBJ}"
-                    case "future indefinite":
-                        RANDOM_SENTENCE = f"{FUTURE_HELPING.capitalize()} {subject} {verb1} {OBJ}"
-
-                    case "present progressive":
-                        RANDOM_SENTENCE = f"{TO_BE.capitalize()} {subject} {verb4} {OBJ}"
-                    case "past progressive":
-                        RANDOM_SENTENCE = f"{PAST_HELPING.capitalize()} {subject} {verb4} {OBJ}"
-                    case "future progressive":
-                        RANDOM_SENTENCE = f"{FUTURE_HELPING.capitalize()} {subject} be {verb4} {OBJ}"
-
-                    case "present perfect":
-                        RANDOM_SENTENCE = f"{TO_HAVE.capitalize()} {subject} {VERB3} {OBJ}"
-                    case "past perfect":
-                        RANDOM_SENTENCE = f"Had {subject} {VERB3} {OBJ}"
-                    case "future perfect":
-                        RANDOM_SENTENCE = f"{FUTURE_HELPING.capitalize()} {subject} have {VERB3} {OBJ}"
-
-                    case "present perfect progressive":
-                        RANDOM_SENTENCE = f"{TO_HAVE.capitalize()} {subject} been {verb4} {OBJ}"
-                    case "past perfect progressive":
-                        RANDOM_SENTENCE = f"Had {subject} been {verb4} {OBJ}"
-                    case "future perfect progressive":
-                        RANDOM_SENTENCE = f"{FUTURE_HELPING.capitalize()} {subject} have been {verb4} {OBJ}"
-
-                    case _:
-                        RANDOM_SENTENCE = f"{tense} is not a type of tense!!!"
-
-            case "negative interrogative":
-                match tense.lower():
-                    case "present indefinite":
-                        RANDOM_SENTENCE = f"{TO_DO.capitalize()} {subject} not {verb1} {OBJ}"
-                    case "past indefinite":
-                        RANDOM_SENTENCE = f"Did {subject} not {VERB2} {OBJ}"
-                    case "future indefinite":
-                        RANDOM_SENTENCE = f"{FUTURE_HELPING.capitalize()} {subject} not {verb1} {OBJ}"
-
-                    case "present progressive":
-                        RANDOM_SENTENCE = f"{TO_BE.capitalize()} {subject} not {verb4} {OBJ}"
-                    case "past progressive":
-                        RANDOM_SENTENCE = f"{PAST_HELPING.capitalize()} {subject} not {verb4} {OBJ}"
-                    case "future progressive":
-                        RANDOM_SENTENCE = f"{FUTURE_HELPING.capitalize()} {subject} not be {verb4} {OBJ}"
-
-                    case "present perfect":
-                        RANDOM_SENTENCE = f"{TO_HAVE.capitalize()} {subject} not {VERB3} {OBJ}"
-                    case "past perfect":
-                        RANDOM_SENTENCE = f"Had {subject} not {VERB3} {OBJ}"
-                    case "future perfect":
-                        RANDOM_SENTENCE = f"{FUTURE_HELPING.capitalize()} {subject} not have {VERB3} {OBJ}"
-
-                    case "present perfect progressive":
-                        RANDOM_SENTENCE = f"{TO_HAVE.capitalize()} {subject} not been {verb4} {OBJ}"
-                    case "past perfect progressive":
-                        RANDOM_SENTENCE = f"Had {subject} not been {verb4} {OBJ}"
-                    case "future perfect progressive":
-                        RANDOM_SENTENCE = f"{FUTURE_HELPING.capitalize()} {subject} have not been {verb4} {OBJ}"
-
-                    case _:
-                        RANDOM_SENTENCE = f"{tense} is not a type of tense!!!"
-
-            case _:
-                RANDOM_SENTENCE = f"{TYPES} is not a type of sentence!!!"
-        RANDOM_SENTENCE = RANDOM_SENTENCE.strip() + marks[0]
-        print(RANDOM_SENTENCE)
+        generate_sentence()
 
     case "finding tense":
-# inputing the sentence and outputing the type and tense of sentence
-        sentence = input("Sentence : ")
+        finding_tense()
 
-# listing the type of sentence
-        if "not" in sentence:
-            TYPES = "Negative Interrogaive" if "?" in sentence else "Negative"
+    case "testing":
+        reply = input("Which part you are testing : ")
+        match reply:
+            case "generate sentence":
+                while True:
+                    generate_sentence()
+                    cut = input(">>")
+                    if cut == "quit":
+                        break
 
-        else:
-            TYPES = "Interrogative" if "?" in sentence else "Affirmative"
-
-# listing the tense of sentence
-        match TYPES:
-            case "Affirmative":
-                if re.search(r"([wW]i|[sS]ha)ll have been", sentence) is not None and "ing" in sentence:
-                    TENSE = "Future perfect progressive"
-                elif "had been" in sentence and "ing" in sentence:
-                    TENSE = "Past perfect progressive"
-                elif re.search(r"(has|have) been", sentence) is not None and "ing" in sentence:
-                    TENSE = "Present perfect progressive"
-
-                elif re.search(r"([wW]i|[sS]ha)ll have", sentence) is not None:
-                    TENSE = "Future perfect"
-                elif "had" in sentence:
-                    TENSE = "Past perfect"
-                elif re.search(r"have|has", sentence) is not None:
-                    TENSE = "Present perfect"
-
-                elif re.search(r"([wW]i|[sS]ha)ll be", sentence) is not None and "ing" in sentence:
-                    TENSE = "Future progressive"
-                elif re.search(r"was|were", sentence) is not None and "ing" in sentence:
-                    TENSE = "Past progressive"
-                elif re.search(r"is|am|are", sentence) is not None and "ing" in sentence:
-                    TENSE = "Present progressive"
-
-                elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None:
-                    TENSE = "Future indefinite"
-                elif re.search(r"ed|ran", sentence) is not None:
-                    TENSE = "Past indefinite"
-                else:
-                    TENSE = "Present indefinite"
-
-        print("Tense :", TENSE)
-        print("Type :", TYPES)
+            case "finding tense":
+                while True:
+                    finding_tense()
+                    cut = input(">>")
+                    if cut == "quit":
+                        break
 
     case _:
         print(f"Sorry, I am not able to {choice}!")
-# Want to output the type of sentence also
+# Need to add 'll , n't like abbreviations also
 
 # need to generate passive sentence also
 # and convert active to passive and passive to active
