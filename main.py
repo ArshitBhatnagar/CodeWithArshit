@@ -1,6 +1,7 @@
 # English Grammar
 """randomizing the sentences"""
 import random
+import re
 
 subjects = ["I", "we", "you", "he", "she", "it", "they", "boy", "girl"]
 # name = input("Enter any name you want to use as a subject : ")
@@ -195,6 +196,7 @@ elif not SINGULAR:
     singular_verb1 = verb1
 
 # Execution
+# need to add since/for in perfect progressive
 choice = input("What would you want to do : ")
 match choice.lower():
     case "generate sentence":
@@ -344,36 +346,53 @@ match choice.lower():
     case "finding tense":
 # inputing the sentence and outputing the type and tense of sentence
         sentence = input("Sentence : ")
-        if (sentence.find("will have been") != -1 or sentence.find("shall have been") != -1) and sentence.find("ing") != -1:
-            TENSE = "Future perfect progressive"
-        elif sentence.find("had been") != -1 and sentence.fing("ing") != -1:
-            TENSE = "Past perfect progressive"
-        elif (sentence.find("have been") != -1 or sentence.find("has been") != -1) and sentence.find("ing") != -1:
-            TENSE = "Present perfect progressive"
 
-        elif sentence.find("will have") != -1 or sentence.find("shall have") != -1:
-            TENSE = "Future perfect"
-        elif sentence.find("had") != -1:
-            TENSE = "Past perfect"
-        elif sentence.find("have") != -1 or sentence.find("has") != -1:
-            TENSE = "Present perfect"
+# listing the type of sentence
+        if "not" in sentence:
+            TYPES = "Negative Interrogaive" if "?" in sentence else "Negative"
 
-        elif (sentence.find("will be") != -1 or sentence.find("shall be") != -1) and sentence.find("ing") != -1:
-            TENSE = "Future progressive"
-        elif (sentence.find("was") != -1 or sentence.find("were") != -1) and sentence.find("ing") != -1:
-            TENSE = "Past progressive"
-        elif (sentence.find("is") != -1 or sentence.find("am") != -1 or sentence.find("are") != -1) and sentence.find("ing") != -1:
-            TENSE = "Present progressive"
-
-        elif sentence.find("will") != -1 or sentence.find("shall") != -1:
-            TENSE = "Future indefinite"
-        elif sentence.find("ed") != -1 or sentence.find("ran") != -1:
-            TENSE = "Past indefinite"
         else:
-            TENSE = "Present indefinite"
+            TYPES = "Interrogative" if "?" in sentence else "Affirmative"
 
-        print(TENSE)
- # Want to output the type of sentence also
+# listing the tense of sentence
+        match TYPES:
+            case "Affirmative":
+                if re.search(r"([wW]i|[sS]ha)ll have been", sentence) is not None and "ing" in sentence:
+                    TENSE = "Future perfect progressive"
+                elif "had been" in sentence and "ing" in sentence:
+                    TENSE = "Past perfect progressive"
+                elif re.search(r"(has|have) been", sentence) is not None and "ing" in sentence:
+                    TENSE = "Present perfect progressive"
 
- # need to generate passive sentence also
- # and convert active to passive and passive to active
+                elif re.search(r"([wW]i|[sS]ha)ll have", sentence) is not None:
+                    TENSE = "Future perfect"
+                elif "had" in sentence:
+                    TENSE = "Past perfect"
+                elif re.search(r"have|has", sentence) is not None:
+                    TENSE = "Present perfect"
+
+                elif re.search(r"([wW]i|[sS]ha)ll be", sentence) is not None and "ing" in sentence:
+                    TENSE = "Future progressive"
+                elif re.search(r"was|were", sentence) is not None and "ing" in sentence:
+                    TENSE = "Past progressive"
+                elif re.search(r"is|am|are", sentence) is not None and "ing" in sentence:
+                    TENSE = "Present progressive"
+
+                elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None:
+                    TENSE = "Future indefinite"
+                elif re.search(r"ed|ran", sentence) is not None:
+                    TENSE = "Past indefinite"
+                else:
+                    TENSE = "Present indefinite"
+
+        print("Tense :", TENSE)
+        print("Type :", TYPES)
+
+    case _:
+        print(f"Sorry, I am not able to {choice}!")
+# Want to output the type of sentence also
+
+# need to generate passive sentence also
+# and convert active to passive and passive to active
+
+# need to convert type of sentence also inputted by the user
