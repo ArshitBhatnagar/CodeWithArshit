@@ -10,41 +10,41 @@ for subject in subjects:
     match subject:
         case "I":
             IOBJECTIVE_SUBJECT = "me"
-            IPOSSESIVE_SUBJECT = "mine"
+            IPOSSESSIVE_SUBJECT = "mine"
         case "we":
             WEOBJECTIVE_SUBJECT = "us"
-            WEPOSSESIVE_SUBJECT = "our"
+            WEPOSSESSIVE_SUBJECT = "our"
         case "you":
             YOUOBJECTIVE_SUBJECT = "you"
-            YOUPOSSESIVE_SUBJECT = "your"
+            YOUPOSSESSIVE_SUBJECT = "your"
         case "he":
             HEOBJECTIVE_SUBJECT = "him"
-            HEPOSSESIVE_SUBJECT = "his"
+            HEPOSSESSIVE_SUBJECT = "his"
         case "she":
             SHEOBJECTIVE_SUBJECT = "her"
-            SHEPOSSESIVE_SUBJECT = "her"
+            SHEPOSSESSIVE_SUBJECT = "her"
         case "it":
             ITOBJECTIVE_SUBJECT = "it"
-            ITPOSSESIVE_SUBJECT = "it's"
+            ITPOSSESSIVE_SUBJECT = "it\'s"
         case "they":
             THEYOBJECTIVE_SUBJECT = "them"
-            THEYPOSSESIVE_SUBJECT = "their"
+            THEYPOSSESSIVE_SUBJECT = "their"
         case "boy":
             BOYOBJECTIVE_SUBJECT = subject
-            BOYPOSSESIVE_SUBJECT = subject + "'s"
+            BOYPOSSESSIVE_SUBJECT = subject + "\'s"
         case "girl":
             GIRLOBJECTIVE_SUBJECT = subject
-            GIRLPOSSESIVE_SUBJECT = subject + "'s"
+            GIRLPOSSESSIVE_SUBJECT = subject + "\'s"
 
 objective_subjects = [IOBJECTIVE_SUBJECT, WEOBJECTIVE_SUBJECT, YOUOBJECTIVE_SUBJECT, HEOBJECTIVE_SUBJECT, SHEOBJECTIVE_SUBJECT, ITOBJECTIVE_SUBJECT, THEYOBJECTIVE_SUBJECT, BOYOBJECTIVE_SUBJECT, GIRLOBJECTIVE_SUBJECT]
-possesive_subjects = [IPOSSESIVE_SUBJECT, WEPOSSESIVE_SUBJECT, YOUPOSSESIVE_SUBJECT, HEPOSSESIVE_SUBJECT, SHEPOSSESIVE_SUBJECT, ITPOSSESIVE_SUBJECT, THEYPOSSESIVE_SUBJECT, BOYPOSSESIVE_SUBJECT, GIRLPOSSESIVE_SUBJECT]
+POSSESSIVE_subjects = [IPOSSESSIVE_SUBJECT, WEPOSSESSIVE_SUBJECT, YOUPOSSESSIVE_SUBJECT, HEPOSSESSIVE_SUBJECT, SHEPOSSESSIVE_SUBJECT, ITPOSSESSIVE_SUBJECT, THEYPOSSESSIVE_SUBJECT, BOYPOSSESSIVE_SUBJECT, GIRLPOSSESSIVE_SUBJECT]
 
 v1 = ["add", "allow", "act", "ask", "abuse", "awake", "amend", "acquire",
       "appear", "announce", "apply", "arrest", "attend", "attract", "avoid"]
 
 prepositions = ["in", "on", "up"]
 
-adverbs = ["genlty", "happily", "sadly", "quietly", "slowly"]
+adverbs = ["gently", "happily", "sadly", "quietly", "slowly"]
 
 marks = [".", "?", ",", "!"]
 
@@ -56,7 +56,7 @@ random_v1 = random.randint(1, len(v1))
 random_preposition = random.randint(1, len(prepositions))
 random_articles = random.randint(1, len(articles))
 RANDOM_OBJECTIVE_SUBJECT = random.randint(1, len(objective_subjects))
-RANDOM_POSSESIVE_SUBJECT = random.randint(1, len(possesive_subjects))
+RANDOM_POSSESSIVE_SUBJECT = random.randint(1, len(POSSESSIVE_subjects))
 
 # applying random
 subject = subjects[random_subject -1]
@@ -64,11 +64,11 @@ verb1 = v1[random_v1 -1]
 preposition = prepositions[random_preposition -1]
 article = articles[random_articles -1]
 OBJECTIVE_SUBJECT = objective_subjects[RANDOM_OBJECTIVE_SUBJECT - 1]
-POSSESIVE_SUBJECT = objective_subjects[RANDOM_POSSESIVE_SUBJECT - 1]
+POSSESSIVE_SUBJECT = objective_subjects[RANDOM_POSSESSIVE_SUBJECT - 1]
 
 # initializing VERB2, VERB3 and verb4
 match verb1:
-# removing e before abuse as it's second form will be abused but in this code it will be abuseed
+# removing e before abuse as it's second form will be abused
 
     case "run":
         VERB2 = "ran"
@@ -103,11 +103,11 @@ match verb1:
     case "abuse":
         objects = [OBJECTIVE_SUBJECT]
     case "amend":
-        objects = ["the situation", "the soil", f"{POSSESIVE_SUBJECT} policy"]
+        objects = ["the situation", "the soil", f"{POSSESSIVE_SUBJECT} policy"]
     case "acquire":
         objects = ["the money", "the books", "the control", f"reputation from {subject}"]
     case "announce":
-        objects = ["the result", "the winnner", f"{POSSESIVE_SUBJECT} retirement", f"{POSSESIVE_SUBJECT} plan"]
+        objects = ["the result", "the winner", f"{POSSESSIVE_SUBJECT} retirement", f"{POSSESSIVE_SUBJECT} plan"]
     case "apply":
         objects = ["the sunscreen"]
     case "arrest":
@@ -343,12 +343,43 @@ def generate_sentence():
 
 def finding_tense():
     """Find the tense of the sentence inputted from user"""
-# inputing the sentence and outputing the type and tense of sentence
+
+    global sentence
+    global tense
+    global types
+
+# inputting the sentence and outputting the type and tense of sentence
     sentence = input("Sentence : ")
+    sentence = sentence.lower()
+
+# converting con
+    if "\'" in sentence:
+        if "n\'t" in sentence:
+            sentence = sentence.replace("n\'t", " not")
+        if "\'s" in sentence:
+            if "been" in sentence:
+                sentence = sentence.replace("\'s", " has")
+            else:
+                sentence = sentence.replace("\'s", " is")
+        if "\'ll" in sentence:
+            if "i" in sentence or "we" in sentence:
+                sentence = sentence.replace("\'ll", " shall")
+            else:
+                sentence = sentence.replace("\'ll", " will")
+        if "\'d" in sentence:
+            sentence = sentence.replace("\'d", " had")
+        if "\'m" in sentence:
+            sentence = sentence.replace("\'m", " am")
+        if "\'ve" in sentence:
+            sentence = sentence.replace("\'ve", " have")
+        if "\'re" in sentence:
+            sentence = sentence.replace("\'re", " are")
+
+        print("Simpler form :", sentence)
 
 # listing the type of sentence
     if "not" in sentence:
-        types = "Negative Interrogaive" if "?" in sentence else "Negative"
+        types = "Negative Interrogative" if "?" in sentence else "Negative"
 
     else:
         types = "Interrogative" if "?" in sentence else "Affirmative"
@@ -414,65 +445,106 @@ def finding_tense():
                 tense = "Present indefinite"
 
         case "Interrogative":
-            if re.search(r"[wW]ill|[sS]hall", sentence) is not None and "ing" in sentence and "have been" in sentence:
+            if re.search(r"will|shall", sentence) is not None and "ing" in sentence and "have been" in sentence:
                 tense = "Future perfect progressive"
-            elif re.search(r"[hH]ad", sentence) is not None and "ing" in sentence and "been" in sentence:
+            elif "had" in sentence and "ing" in sentence and "been" in sentence:
                 tense = "Past perfect progressive"
-            elif re.search(r"[hH]as|[hH]ave", sentence) is not None and "ing" in sentence and "been" in sentence:
+            elif re.search(r"has|have", sentence) is not None and "ing" in sentence and "been" in sentence:
                 tense = "Present perfect progressive"
 
-            elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None and "have" in sentence:
+            elif re.search(r"will|shall", sentence) is not None and "have" in sentence:
                 tense = "Future perfect"
-            elif re.search(r"[hH]ad", sentence) is not None:
+            elif "had" in sentence:
                 tense = "Past perfect"
-            elif re.search(r"([hH]ave|[hH]as)", sentence) is not None:
+            elif re.search(r"(have|has)", sentence) is not None:
                 tense = "Present perfect"
 
-            elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None and "ing" in sentence and "be" in sentence:
+            elif re.search(r"will|shall", sentence) is not None and "ing" in sentence and "be" in sentence:
                 tense = "Future progressive"
-            elif re.search(r"([wW]as|[wW]ere)", sentence) is not None and "ing" in sentence:
+            elif re.search(r"was|were", sentence) is not None and "ing" in sentence:
                 tense = "Past progressive"
-            elif re.search(r"([iI]s|[aA]m|[aA]re)", sentence) is not None and "ing" in sentence:
+            elif re.search(r"(is|am|are)", sentence) is not None and "ing" in sentence:
                 tense = "Present progressive"
 
-            elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None:
+            elif re.search(r"will|shall", sentence) is not None:
                 tense = "Future indefinite"
-            elif re.search(r"[Dd]id", sentence) is not None:
+            elif "did" in sentence:
                 tense = "Past indefinite"
             else:
                 tense = "Present indefinite"
 
         case "Negative Interrogative":
-            if re.search(r"[wW]ill|[sS]hall", sentence) is not None and "ing" in sentence and "have not been" in sentence:
+            if re.search(r"will|shall", sentence) is not None and "ing" in sentence and "have not been" in sentence:
                 tense = "Future perfect progressive"
-            elif re.search(r"[hH]ad", sentence) is not None and "ing" in sentence and "not been" in sentence:
+            elif "had" in sentence and "ing" in sentence and "not been" in sentence:
                 tense = "Past perfect progressive"
-            elif re.search(r"[hH]as|[hH]ave", sentence) is not None and "ing" in sentence and "not been" in sentence:
+            elif re.search(r"has|have", sentence) is not None and "ing" in sentence and "not been" in sentence:
                 tense = "Present perfect progressive"
 
-            elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None and "not have" in sentence:
+            elif re.search(r"will|shall", sentence) is not None and "not have" in sentence:
                 tense = "Future perfect"
-            elif re.search(r"[hH]ad", sentence) is not None:
+            elif "had" in sentence:
                 tense = "Past perfect"
-            elif re.search(r"([hH]ave|[hH]as)", sentence) is not None:
+            elif re.search(r"have|has", sentence) is not None:
                 tense = "Present perfect"
 
-            elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None and "ing" in sentence and "not be" in sentence:
+            elif re.search(r"will|shall", sentence) is not None and "ing" in sentence and "not be" in sentence:
                 tense = "Future progressive"
-            elif re.search(r"([wW]as|[wW]ere)", sentence) is not None and "ing" in sentence:
+            elif re.search(r"was|were", sentence) is not None and "ing" in sentence:
                 tense = "Past progressive"
-            elif re.search(r"([iI]s|[aA]m|[aA]re)", sentence) is not None and "ing" in sentence:
+            elif re.search(r"is|am|are", sentence) is not None and "ing" in sentence:
                 tense = "Present progressive"
 
-            elif re.search(r"([wW]i|[sS]ha)ll", sentence) is not None:
+            elif re.search(r"will|shall", sentence) is not None:
                 tense = "Future indefinite"
-            elif re.search(r"[Dd]id", sentence) is not None:
+            elif "did" in sentence:
                 tense = "Past indefinite"
             else:
                 tense = "Present indefinite"
 
     print("tense :", tense)
     print("Type :", types)
+
+def convert_active():
+    """Converts active to passive"""
+    finding_tense()
+    match types.lower():
+        case "affirmative":
+            match tense.lower():
+                case "present indefinite":
+                    pass
+                case "present progressive":
+                    pass
+                case "present perfect":
+                    pass
+                case "present perfect progressive":
+                    pass
+
+                case "past indefinite":
+                    pass
+                case "past progressive":
+                    pass
+                case "past perfect":
+                    pass
+                case "past perfect progressive":
+                    pass
+
+                case "future indefinite":
+                    pass
+                case "future progressive":
+                    pass
+                case "future perfect":
+                    pass
+                case "future perfect progressive":
+                    pass
+
+        case "nagative":
+            pass
+        case "interrogative":
+            pass
+        case "negative interrogative":
+            pass
+
 choice = input("What would you want to do : ")
 match choice.lower():
     case "generate sentence":
@@ -480,6 +552,9 @@ match choice.lower():
 
     case "finding tense":
         finding_tense()
+
+    case "convert":
+        convert_active()
 
     case "testing":
         reply = input("Which part you are testing : ")
@@ -500,7 +575,6 @@ match choice.lower():
 
     case _:
         print(f"Sorry, I am not able to {choice}!")
-# Need to add 'll , n't like abbreviations also
 
 # need to generate passive sentence also
 # and convert active to passive and passive to active
