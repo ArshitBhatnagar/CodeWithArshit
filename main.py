@@ -509,6 +509,10 @@ def convert_active():
     """Converts active to passive"""
     finding_tense()
 
+    global sentence
+    global tense
+    global types
+
     match types.lower():
         case "affirmative":
             match tense.lower():
@@ -539,7 +543,7 @@ def convert_active():
                 case "future perfect progressive":
                     pass
 
-        case "nagative":
+        case "negative":
             pass
         case "interrogative":
             pass
