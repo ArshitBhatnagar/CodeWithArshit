@@ -508,9 +508,7 @@ def finding_tense():
 def convert_active():
     """Converts active to passive"""
     finding_tense()
-<<<<<<< HEAD
-=======
->>>>>>> origin/main
+
     match types.lower():
         case "affirmative":
             match tense.lower():
@@ -541,11 +539,7 @@ def convert_active():
                 case "future perfect progressive":
                     pass
 
-<<<<<<< HEAD
         case "nagative":
-=======
-        case "nagative":
->>>>>>> origin/main
             pass
         case "interrogative":
             pass
