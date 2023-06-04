@@ -3,11 +3,11 @@
 import random
 import re
 
-subjects = ["I", "we", "you", "he", "she", "it", "they", "boy", "girl"]
-# name = input("Enter any name you want to use as a subject : ")
-# subjects.append(name)
-for subject in subjects:
-    match subject:
+SUBJECTs = ["I", "we", "you", "he", "she", "it", "they", "boy", "girl"]
+# name = input("Enter any name you want to use as a SUBJECT : ")
+# SUBJECTs.append(name)
+for SUBJECT in SUBJECTs:
+    match SUBJECT:
         case "I":
             IOBJECTIVE_SUBJECT = "me"
             IPOSSESSIVE_SUBJECT = "mine"
@@ -30,14 +30,14 @@ for subject in subjects:
             THEYOBJECTIVE_SUBJECT = "them"
             THEYPOSSESSIVE_SUBJECT = "their"
         case "boy":
-            BOYOBJECTIVE_SUBJECT = subject
-            BOYPOSSESSIVE_SUBJECT = subject + "\'s"
+            BOYOBJECTIVE_SUBJECT = SUBJECT
+            BOYPOSSESSIVE_SUBJECT = SUBJECT + "\'s"
         case "girl":
-            GIRLOBJECTIVE_SUBJECT = subject
-            GIRLPOSSESSIVE_SUBJECT = subject + "\'s"
+            GIRLOBJECTIVE_SUBJECT = SUBJECT
+            GIRLPOSSESSIVE_SUBJECT = SUBJECT + "\'s"
 
-objective_subjects = [IOBJECTIVE_SUBJECT, WEOBJECTIVE_SUBJECT, YOUOBJECTIVE_SUBJECT, HEOBJECTIVE_SUBJECT, SHEOBJECTIVE_SUBJECT, ITOBJECTIVE_SUBJECT, THEYOBJECTIVE_SUBJECT, BOYOBJECTIVE_SUBJECT, GIRLOBJECTIVE_SUBJECT]
-POSSESSIVE_subjects = [IPOSSESSIVE_SUBJECT, WEPOSSESSIVE_SUBJECT, YOUPOSSESSIVE_SUBJECT, HEPOSSESSIVE_SUBJECT, SHEPOSSESSIVE_SUBJECT, ITPOSSESSIVE_SUBJECT, THEYPOSSESSIVE_SUBJECT, BOYPOSSESSIVE_SUBJECT, GIRLPOSSESSIVE_SUBJECT]
+objective_SUBJECTs = [IOBJECTIVE_SUBJECT, WEOBJECTIVE_SUBJECT, YOUOBJECTIVE_SUBJECT, HEOBJECTIVE_SUBJECT, SHEOBJECTIVE_SUBJECT, ITOBJECTIVE_SUBJECT, THEYOBJECTIVE_SUBJECT, BOYOBJECTIVE_SUBJECT, GIRLOBJECTIVE_SUBJECT]
+POSSESSIVE_SUBJECTs = [IPOSSESSIVE_SUBJECT, WEPOSSESSIVE_SUBJECT, YOUPOSSESSIVE_SUBJECT, HEPOSSESSIVE_SUBJECT, SHEPOSSESSIVE_SUBJECT, ITPOSSESSIVE_SUBJECT, THEYPOSSESSIVE_SUBJECT, BOYPOSSESSIVE_SUBJECT, GIRLPOSSESSIVE_SUBJECT]
 
 v1 = ["add", "allow", "act", "ask", "abuse", "awake", "amend", "acquire",
       "appear", "announce", "apply", "arrest", "attend", "attract", "avoid"]
@@ -51,20 +51,12 @@ marks = [".", "?", ",", "!"]
 articles = ["a", "an", "the"]
 
 # randomizing
-random_subject = random.randint(1, len(subjects))
-random_v1 = random.randint(1, len(v1))
-random_preposition = random.randint(1, len(prepositions))
-random_articles = random.randint(1, len(articles))
-RANDOM_OBJECTIVE_SUBJECT = random.randint(1, len(objective_subjects))
-RANDOM_POSSESSIVE_SUBJECT = random.randint(1, len(POSSESSIVE_subjects))
-
-# applying random
-subject = subjects[random_subject -1]
-verb1 = v1[random_v1 -1]
-preposition = prepositions[random_preposition -1]
-article = articles[random_articles -1]
-OBJECTIVE_SUBJECT = objective_subjects[RANDOM_OBJECTIVE_SUBJECT - 1]
-POSSESSIVE_SUBJECT = objective_subjects[RANDOM_POSSESSIVE_SUBJECT - 1]
+SUBJECT = random.choice(SUBJECTs)
+verb1 = random.choice(v1)
+preposition = random.choice(prepositions)
+article = random.choice(articles)
+OBJECTIVE_SUBJECT = random.choice(objective_SUBJECTs)
+POSSESSIVE_SUBJECT = random.choice(POSSESSIVE_SUBJECTs)
 
 # initializing VERB2, VERB3 and verb4
 match verb1:
@@ -105,7 +97,7 @@ match verb1:
     case "amend":
         objects = ["the situation", "the soil", f"{POSSESSIVE_SUBJECT} policy"]
     case "acquire":
-        objects = ["the money", "the books", "the control", f"reputation from {subject}"]
+        objects = ["the money", "the books", "the control", f"reputation from {SUBJECT}"]
     case "announce":
         objects = ["the result", "the winner", f"{POSSESSIVE_SUBJECT} retirement", f"{POSSESSIVE_SUBJECT} plan"]
     case "apply":
@@ -124,11 +116,11 @@ if objects:
     if len(objects) == 1:
         OBJ = objects[0]
     else:
-        random_object = random.randint(1, len(objects))
+        random_object = random.choice(objects)
         OBJ = objects[random_object -1]
 else:
     OBJ = ""
-match subject:
+match SUBJECT:
     case "I":
         FUTURE_HELPING = "shall"
         TO_HAVE = "have"
@@ -168,7 +160,7 @@ match subject:
         TO_BE = "is"
         SINGULAR = True
         TO_DO = "does"
-        subject = articles[2] + " " + subject
+        SUBJECT = articles[2] + " " + SUBJECT
 
     case "girl":
         FUTURE_HELPING = "will"
@@ -177,7 +169,7 @@ match subject:
         TO_BE = "is"
         SINGULAR = True
         TO_DO = "does"
-        subject = articles[2] + " " + subject
+        SUBJECT = articles[2] + " " + SUBJECT
 
     case _:
         FUTURE_HELPING = "will"
@@ -207,32 +199,32 @@ def generate_sentence():
         case "affirmative":
             match tense.lower():
                 case "present indefinite":
-                    random_sentence = f"{subject.capitalize()} {singular_verb1} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {singular_verb1} {OBJ}"
                 case "past indefinite":
-                    random_sentence = f"{subject.capitalize()} {VERB2} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {VERB2} {OBJ}"
                 case "future indefinite":
-                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} {verb1} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {FUTURE_HELPING} {verb1} {OBJ}"
 
                 case "present progressive":
-                    random_sentence = f"{subject.capitalize()} {TO_BE} {verb4} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {TO_BE} {verb4} {OBJ}"
                 case "past progressive":
-                    random_sentence = f"{subject.capitalize()} {PAST_HELPING} {verb4} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {PAST_HELPING} {verb4} {OBJ}"
                 case "future progressive":
-                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} be {verb4} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {FUTURE_HELPING} be {verb4} {OBJ}"
 
                 case "present perfect":
-                    random_sentence = f"{subject.capitalize()} {TO_HAVE} {VERB3} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {TO_HAVE} {VERB3} {OBJ}"
                 case "past perfect":
-                    random_sentence = f"{subject.capitalize()} had {VERB3} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} had {VERB3} {OBJ}"
                 case "future perfect":
-                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} have {VERB3} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {FUTURE_HELPING} have {VERB3} {OBJ}"
 
                 case "present perfect progressive":
-                    random_sentence = f"{subject.capitalize()} {TO_HAVE} been {verb4} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {TO_HAVE} been {verb4} {OBJ}"
                 case "past perfect progressive":
-                    random_sentence = f"{subject.capitalize()} had been {verb4} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} had been {verb4} {OBJ}"
                 case "future perfect progressive":
-                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} have been {verb4} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {FUTURE_HELPING} have been {verb4} {OBJ}"
 
                 case _:
                     random_sentence = f"{tense} is not a type of tense!!!"
@@ -240,32 +232,32 @@ def generate_sentence():
         case "negative":
             match tense.lower():
                 case "present indefinite":
-                    random_sentence = f"{subject.capitalize()} {TO_DO} not {verb1} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {TO_DO} not {verb1} {OBJ}"
                 case "past indefinite":
-                    random_sentence = f"{subject.capitalize()} did not {VERB2} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} did not {VERB2} {OBJ}"
                 case "future indefinite":
-                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} not {verb1} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {FUTURE_HELPING} not {verb1} {OBJ}"
 
                 case "present progressive":
-                    random_sentence = f"{subject.capitalize()} {TO_BE} not {verb4} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {TO_BE} not {verb4} {OBJ}"
                 case "past progressive":
-                    random_sentence = f"{subject.capitalize()} {PAST_HELPING} not {verb4} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {PAST_HELPING} not {verb4} {OBJ}"
                 case "future progressive":
-                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} not be {verb4} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {FUTURE_HELPING} not be {verb4} {OBJ}"
 
                 case "present perfect":
-                    random_sentence = f"{subject.capitalize()} {TO_HAVE} not {VERB3} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {TO_HAVE} not {VERB3} {OBJ}"
                 case "past perfect":
-                    random_sentence = f"{subject.capitalize()} had not {VERB3} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} had not {VERB3} {OBJ}"
                 case "future perfect":
-                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} not have {VERB3} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {FUTURE_HELPING} not have {VERB3} {OBJ}"
 
                 case "present perfect progressive":
-                    random_sentence = f"{subject.capitalize()} {TO_HAVE} not been {verb4} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {TO_HAVE} not been {verb4} {OBJ}"
                 case "past perfect progressive":
-                    random_sentence = f"{subject.capitalize()} had not been {verb4} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} had not been {verb4} {OBJ}"
                 case "future perfect progressive":
-                    random_sentence = f"{subject.capitalize()} {FUTURE_HELPING} have not been {verb4} {OBJ}"
+                    random_sentence = f"{SUBJECT.capitalize()} {FUTURE_HELPING} have not been {verb4} {OBJ}"
 
                 case _:
                     random_sentence = f"{tense} is not a type of tense!!!"
@@ -273,32 +265,32 @@ def generate_sentence():
         case "interrogative":
             match tense.lower():
                 case "present indefinite":
-                    random_sentence = f"{TO_DO.capitalize()} {subject} {verb1} {OBJ}"
+                    random_sentence = f"{TO_DO.capitalize()} {SUBJECT} {verb1} {OBJ}"
                 case "past indefinite":
-                    random_sentence = f"Did {subject} {VERB2} {OBJ}"
+                    random_sentence = f"Did {SUBJECT} {VERB2} {OBJ}"
                 case "future indefinite":
-                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} {verb1} {OBJ}"
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {SUBJECT} {verb1} {OBJ}"
 
                 case "present progressive":
-                    random_sentence = f"{TO_BE.capitalize()} {subject} {verb4} {OBJ}"
+                    random_sentence = f"{TO_BE.capitalize()} {SUBJECT} {verb4} {OBJ}"
                 case "past progressive":
-                    random_sentence = f"{PAST_HELPING.capitalize()} {subject} {verb4} {OBJ}"
+                    random_sentence = f"{PAST_HELPING.capitalize()} {SUBJECT} {verb4} {OBJ}"
                 case "future progressive":
-                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} be {verb4} {OBJ}"
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {SUBJECT} be {verb4} {OBJ}"
 
                 case "present perfect":
-                    random_sentence = f"{TO_HAVE.capitalize()} {subject} {VERB3} {OBJ}"
+                    random_sentence = f"{TO_HAVE.capitalize()} {SUBJECT} {VERB3} {OBJ}"
                 case "past perfect":
-                    random_sentence = f"Had {subject} {VERB3} {OBJ}"
+                    random_sentence = f"Had {SUBJECT} {VERB3} {OBJ}"
                 case "future perfect":
-                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} have {VERB3} {OBJ}"
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {SUBJECT} have {VERB3} {OBJ}"
 
                 case "present perfect progressive":
-                    random_sentence = f"{TO_HAVE.capitalize()} {subject} been {verb4} {OBJ}"
+                    random_sentence = f"{TO_HAVE.capitalize()} {SUBJECT} been {verb4} {OBJ}"
                 case "past perfect progressive":
-                    random_sentence = f"Had {subject} been {verb4} {OBJ}"
+                    random_sentence = f"Had {SUBJECT} been {verb4} {OBJ}"
                 case "future perfect progressive":
-                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} have been {verb4} {OBJ}"
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {SUBJECT} have been {verb4} {OBJ}"
 
                 case _:
                     random_sentence = f"{tense} is not a type of tense!!!"
@@ -306,32 +298,32 @@ def generate_sentence():
         case "negative interrogative":
             match tense.lower():
                 case "present indefinite":
-                    random_sentence = f"{TO_DO.capitalize()} {subject} not {verb1} {OBJ}"
+                    random_sentence = f"{TO_DO.capitalize()} {SUBJECT} not {verb1} {OBJ}"
                 case "past indefinite":
-                    random_sentence = f"Did {subject} not {VERB2} {OBJ}"
+                    random_sentence = f"Did {SUBJECT} not {VERB2} {OBJ}"
                 case "future indefinite":
-                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} not {verb1} {OBJ}"
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {SUBJECT} not {verb1} {OBJ}"
 
                 case "present progressive":
-                    random_sentence = f"{TO_BE.capitalize()} {subject} not {verb4} {OBJ}"
+                    random_sentence = f"{TO_BE.capitalize()} {SUBJECT} not {verb4} {OBJ}"
                 case "past progressive":
-                    random_sentence = f"{PAST_HELPING.capitalize()} {subject} not {verb4} {OBJ}"
+                    random_sentence = f"{PAST_HELPING.capitalize()} {SUBJECT} not {verb4} {OBJ}"
                 case "future progressive":
-                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} not be {verb4} {OBJ}"
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {SUBJECT} not be {verb4} {OBJ}"
 
                 case "present perfect":
-                    random_sentence = f"{TO_HAVE.capitalize()} {subject} not {VERB3} {OBJ}"
+                    random_sentence = f"{TO_HAVE.capitalize()} {SUBJECT} not {VERB3} {OBJ}"
                 case "past perfect":
-                    random_sentence = f"Had {subject} not {VERB3} {OBJ}"
+                    random_sentence = f"Had {SUBJECT} not {VERB3} {OBJ}"
                 case "future perfect":
-                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} not have {VERB3} {OBJ}"
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {SUBJECT} not have {VERB3} {OBJ}"
 
                 case "present perfect progressive":
-                    random_sentence = f"{TO_HAVE.capitalize()} {subject} not been {verb4} {OBJ}"
+                    random_sentence = f"{TO_HAVE.capitalize()} {SUBJECT} not been {verb4} {OBJ}"
                 case "past perfect progressive":
-                    random_sentence = f"Had {subject} not been {verb4} {OBJ}"
+                    random_sentence = f"Had {SUBJECT} not been {verb4} {OBJ}"
                 case "future perfect progressive":
-                    random_sentence = f"{FUTURE_HELPING.capitalize()} {subject} have not been {verb4} {OBJ}"
+                    random_sentence = f"{FUTURE_HELPING.capitalize()} {SUBJECT} have not been {verb4} {OBJ}"
 
                 case _:
                     random_sentence = f"{tense} is not a type of tense!!!"
@@ -518,8 +510,10 @@ def convert_active():
             match tense.lower():
                 case "present indefinite":
                     pass
+
                 case "present progressive":
                     pass
+
                 case "present perfect":
                     pass
                 case "present perfect progressive":
